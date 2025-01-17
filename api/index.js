@@ -5,6 +5,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const productsRouter = require("./routes/route.products");
+const authRouter = require("./routes/route.auth");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -18,6 +19,7 @@ app.use(express.urlencoded({extended: true}));
 
 // Routes
 app.use("/api/products", productsRouter);
+app.use("/auth", authRouter);
 
 app.listen(PORT, (req, res) => {
     console.log(`Server running on port ${PORT}`)
@@ -28,9 +30,14 @@ mongoose.connect(mongoUri).then(() => console.log("Connected to MongoDB"))
    .catch((err) => console.error("Could not connect to MongoDB", err));
 
 app.get("/", async (req, res) => {
-    res.json({
-        message: "Hello world!",
-    })
+    try {
+        return res.json({
+            message: "Hello world!",
+        })
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({
+            error: error.message
+        })
+    }
 });
-
-module.exports = app;
