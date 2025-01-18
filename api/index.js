@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const productsRouter = require("./routes/route.products");
 const authRouter = require("./routes/route.auth");
+const User = require("./models/user.model");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
