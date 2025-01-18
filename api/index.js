@@ -20,14 +20,17 @@ app.use(express.urlencoded({extended: true}));
 
 // Routes
 app.use("/api/products", productsRouter);
-app.use("/auth", authRouter);
+app.use("/api/auth", authRouter);
 
-app.listen(PORT, (req, res) => {
-    console.log(`Server running on port ${PORT}`)
-});
 
 // Database connection
-mongoose.connect(mongoUri).then(() => console.log("Connected to MongoDB"))
+mongoose.connect(mongoUri)
+    .then(() => {
+        console.log("Connected to MongoDB!");
+        app.listen(PORT, (req, res) => {
+            console.log(`Server running on port ${PORT}`)
+        });
+    })
    .catch((err) => console.error("Could not connect to MongoDB", err));
 
 app.get("/", async (req, res) => {
