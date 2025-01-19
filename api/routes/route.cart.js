@@ -29,7 +29,7 @@ cartRouter.post("/saveItems/:userEmail", async (req, res) => {
         const {userEmail} = req.params;
         const items = req.body;
 
-        if (!Array.isArray(items) || items.length < 1 || !userEmail) {
+        if (!Array.isArray(items) || !userEmail) {
             return res.status(400).json({message: "Invalid items array!"});
         }
 
