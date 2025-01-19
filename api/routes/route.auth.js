@@ -9,6 +9,8 @@ authRouter.post("/login", async (req, res) => {
         const creds = req.body;
         const {email, password} = creds;
 
+        console.log(creds);
+
         const existingUser = await User.findOne({email: email});
         
         if (!existingUser) {

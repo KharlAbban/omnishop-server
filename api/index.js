@@ -6,7 +6,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const productsRouter = require("./routes/route.products");
 const authRouter = require("./routes/route.auth");
-const User = require("./models/user.model");
+const cartRouter = require("./routes/route.cart");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -21,6 +21,7 @@ app.use(express.urlencoded({extended: true}));
 // Routes
 app.use("/api/products", productsRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/cart", cartRouter);
 
 
 // Database connection
