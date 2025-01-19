@@ -10,7 +10,7 @@ const cartRouter = require("./routes/route.cart");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const mongoUri = process.env.MONGODB_LOCAL_CONNECTION_STRING;
+const mongoUri = process.env.MONGODB_CONNECTION_STRING;
 
 // Middleware
 app.use(cors());
